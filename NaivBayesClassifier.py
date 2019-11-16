@@ -3,6 +3,9 @@ from __future__ import division
 from codecs import open
 from collections import Counter
 
+import numpy as np
+
+
 def read_Document(dataFile):
     """
     read dataFile.txt (the original file downloaded from moodle)
@@ -20,63 +23,55 @@ def read_Document(dataFile):
 
     return document,labels
 
-def processed_file():
-    """
-    :return: array of tokens and labels writen to .txt file
-    """
-    f= open("b.txt", "w")
-    dataFile="dataFile.txt"
-    processed_Doc=read_Document(dataFile)
-    f.write(str(processed_Doc ))
-    return f
-
-
 
 def train_nb(documents,labels): #Naive Bayes for training part
     """
-    :param documents: training documents
-    :param labels: training labels
+    :param documents: training documents list<list<string>>
+    :param labels: list<string>
     :return: probability_labels,probability_neg,probability_pos
     """
-    labelCounter=Counter()
+    labelsCounter=Counter()
     for label in labels:
-        labelCounter[label] +=1
+        labelsCounter[label] +=1
 
-    TokensOfNeg_label_counter=Counter()
-    for l,document in enumerate(documents):
-        if labels[l] == 'neg':
-            for tokens in document:
-                TokensOfNeg_label_counter[tokens] +=1
+    lableProbability = {}
+    for labelKey in labelsCounter:
+        lableProbability[labelKey] = labelsCounter[labelKey] / len( labels )
 
-    TokensOfPos_label_counter=Counter()
-    for l,document in enumerate(documents):
-        if labels[l]=='pos':
-            for tokens in document:
-                TokensOfPos_label_counter[tokens] +=1
-
-    print("total number of labels: ",labelCounter)
-    #print("number Of Pos Labels: ",TokensOfNeg_label_counter)
-    #print("number Of Neg Labels: ",TokensOfPos_label_counter)
-
-    probability_labels={}
-    for i in labels:
-        probability_labels[i]=labelCounter[i]/(sum([labelCounter[i] for i in labels]))
-        print(probability_labels[i])
-
-    probability_neg = {}
-    for i in TokensOfNeg_label_counter:
-        probability_neg[i]=TokensOfNeg_label_counter[i]/sum(TokensOfNeg_label_counter.values())
-
-    probability_pos={}
-    for i in TokensOfPos_label_counter:
-        probability_pos[i]=TokensOfPos_label_counter[i]/sum(TokensOfPos_label_counter.values())
+    trainedData = {} # for each label, shows the probability of each word
+    for labelKey in labelsCounter:
+        labelFreqCounter= Counter()
+        for index,document in enumerate(documents):
+            if labels[index] == labelKey:
+                for token in document:
+                    labelFreqCounter[token] += 1
+        trainedData[labelKey]=labelFreqCounter
 
 
-    print("Estimating parameters for naive bayes")
+    for key, data in trainedData.items():
+        numberOfAllToken= 0
+        for token in data:
+            numberOfAllToken += data.get(token)
+        for token in data:
+            data[token] = data.get(token) / numberOfAllToken
 
-    return probability_labels,probability_neg,probability_pos
+    return trainedData, lableProbability
 
 
-def score_doc_label(document,label,probability_labels,probability_neg,probability_pos):
+def score_doc_label(document, label, trainedData, lableProbabilty):
+    smoothingFactor = 0.5
+    words = document.strip().split()
+    score = lableProbabilty[label]
+    logScore = np.log(lableProbabilty[label])
+    for word in words:
+        if trainedData.get(label).keys().__contains__(word):
+            score += trainedData.get(label).get(word) + smoothingFactor
+            logScore += np.log(trainedData.get(label).get(word) + smoothingFactor)
 
-    return None
+    return score,logScore
+
+
+
+
+
+

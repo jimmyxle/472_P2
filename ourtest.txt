@@ -1,0 +1,5 @@
+doc1 SPAM 241.txt cheap viagra for sale
+doc2 SPAM 241.txt click here for the best viagra
+doc3 SPAM  241.txt book your trip
+doc4 HAM 241.txt cheap book sale, not viagra
+doc5 HAM 241.txt here is the book for you
