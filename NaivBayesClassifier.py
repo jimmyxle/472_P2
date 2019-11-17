@@ -43,8 +43,8 @@ def train_nb(documents,labels): #Naive Bayes for training part
         labelFreqCounter= Counter()
         for index,document in enumerate(documents):
             if labels[index] == labelKey:
-                for token in document:
-                    labelFreqCounter[token] += 1
+                for word in document:
+                    labelFreqCounter[word] += 1
         trainedData[labelKey]=labelFreqCounter
 
 
@@ -87,8 +87,22 @@ def classify_nb(document, trainedData, lableProbabilty):
 
     return bestFitLabel
 
+def classify_documents(evaluatingDocs ,trainedData, lableProbabilty):
+    guessed_labels = []
+    for document in evaluatingDocs:
+        guessed_labels.append(classify_nb(document, trainedData, lableProbabilty))
 
+    return guessed_labels
 
+def accuracy(true_labels, guessed_labels):
+    correctLabelsCount = 0
+    wrongLabelsCount = 0
+    for index, value in enumerate(true_labels):
+        if true_labels[index] == guessed_labels[index]:
+           correctLabelsCount += 1
+        else:
+            wrongLabelsCount += 1
 
+    return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
 
 
