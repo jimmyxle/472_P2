@@ -59,16 +59,33 @@ def train_nb(documents,labels): #Naive Bayes for training part
 
 
 def score_doc_label(document, label, trainedData, lableProbabilty):
-    smoothingFactor = 0.5
-    words = document.strip().split()
+    smoothingFactor = 0.0
+    words = {}
+    if type(document) is not list :
+        words = document.strip().split()
+    else:
+        words = document
     score = lableProbabilty[label]
     logScore = np.log(lableProbabilty[label])
     for word in words:
         if trainedData.get(label).keys().__contains__(word):
-            score += trainedData.get(label).get(word) + smoothingFactor
+            score *= (trainedData.get(label).get(word) + smoothingFactor) #not used for reference
             logScore += np.log(trainedData.get(label).get(word) + smoothingFactor)
 
-    return score,logScore
+    return logScore
+
+
+def classify_nb(document, trainedData, lableProbabilty):
+    scoresDictionary = {}
+    for key in lableProbabilty:
+         scoresDictionary[key]=score_doc_label(document, key, trainedData, lableProbabilty)
+
+    bestFitLabel = list(lableProbabilty.keys())[0]
+    for label in scoresDictionary.keys():
+        if scoresDictionary[label] > scoresDictionary[bestFitLabel]:
+            bestFitLabel = label
+
+    return bestFitLabel
 
 
 
