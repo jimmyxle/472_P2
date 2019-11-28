@@ -1,0 +1,60 @@
+music pos 458.txt rien a dire si ce n'est que too $hort et ses potes ça claque c'est tout
+
+ur classifier says it should be negative review but it is labeled as positive in the input data.
+There is a significant difference between the scores because this document is in French and our data training set for sentiment Naive Bayes is in English
+
+logarithmic Score for `pos` label =  -6.175575185773566
+logarithmic Score for `neg` label =  -5.51918460277076
+
+----------------------------------------
+
+books neg 245.txt if you think you 'd find a lot of unrelated platitudes interesting , then you 'll enjoy this book . is labeled as neg but our classifier says it should be pos
+logarithmic Score for `pos` label =  -14.21077461098622
+logarithmic Score for `neg` label =  -14.25150340044287
+--------------------------------------
+software neg 49.txt this product offers much to chose from and i really liked the photos . however , i have yet to get this program to work right . i am able to view the photos but when i go into the the export wizard to save the photos , the photo has a transparency over the top of it , instead of in the background . i tried bypassing the export wizard by right clicking on the selected photo and saving . this also inserts the transparency over the photo . i called hemera in canada and they instructed me to call encore usa in ca for support . encore usa said they could n't help me . encore 's technical support is " limited to crashes , error messages and lockups " . i also referred to their website hoping to find help in the knowledge base or faq's . there was very little about this software and no help to be found . i wasted my money on a product i ca n't use and that offers no support for issues out of my control .
+is labeled as neg.
+but our classifier says it should be pos.
+logarithmic Score for `pos` label =  -120.54304963554782
+logarithmic Score for `neg` label =  -124.03764123992265
+It is hard to classify it because it says it is a good product but bad support.
+
+-------------------------------------------------------
+books neg 920.txt this book is typical for many of its kind , just a man-hating drivel from feminists...and otherwise good for nothing
+
+logarithmic Score for `pos` label =  -12.182431233092979
+logarithmic Score for `neg` label =  -12.923370004769206
+
+
+-----------------------------------
+camera neg 984.txt this is a good charger - quick and portable . but the battery life of the battery sucks !
+
+logarithmic Score for `pos` label =  -12.679117794277282
+logarithmic Score for `neg` label =  -12.733565176987604
+
+our classifier says it should be positive review.
+It is hard to classify this review because there are positive words like good,quick,portable, and negative words like sucks.
+Also, first sentence is positive, second sentence is negative.
+----------------------------------------------------------------
+books neg 652.txt good book on deal structure , but if you want a valuation number , check out & quot ; unlocking the value of your business&quot ;
+it seems poitive review and our classifier classified it as pos too.
+logarithmic Score for `pos` label =  -16.22796442893886
+logarithmic Score for `neg` label =  -16.274555341762632
+-----------------------------------------------------------------
+music neg 654.txt this lifts your heart to god as you listen . beautifully done
+
+our classifier says it should be positive review but it is labeled as negative in the input data.
+This review is actually positive, with positive words.
+logarithmic Score for `pos` label =  -8.117811672757284
+logarithmic Score for `neg` label =  -8.150384698397003
+
+
+----------------------------------------
+books neg 592.txt the best out of three guide books i looked at , and a must for the first trip to the big island .
+
+our classifier says it should be positive review but it is labeled as negative in the input data.
+
+logarithmic Score for `pos` label =  -15.943078021856868
+logarithmic Score for `neg` label =  -15.99561521596421
+
+----------------------
