@@ -85,7 +85,7 @@ def score_doc_label(document, label, trainedData, lableProbabilty):
 
     return logScore
 
-#This function claffifies a new document
+#This function classifies a new document
 # we calculate the score of each category by using the probability of observing each word in document and probability of each label
 #The document begongs to the category with higher score
 def classify_nb(document, trainedData, lableProbabilty):
@@ -121,4 +121,29 @@ def accuracy(true_labels, guessed_labels):
 
     return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
 
+# accuracy of detecting a class, if a class = classLabel, what is the P of guessing correctly
+def accuracyOfClassDetection(true_labels, guessed_labels, classLabel):
+    correctLabelsCount = 0
+    wrongLabelsCount = 0
+    for index, value in enumerate(true_labels):
+        if true_labels[index] == classLabel:
+            if true_labels[index] == guessed_labels[index]:
+               correctLabelsCount += 1
+            else:
+                wrongLabelsCount += 1
 
+    return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
+
+
+# accuracy of guesses for a certain class, if we guessed a sample's class = classLabel , how correct it is
+def accuracyOfGuessedClass(true_labels, guessed_labels, classLabel: str):
+    correctLabelsCount = 0
+    wrongLabelsCount = 0
+    for index, value in enumerate(true_labels):
+        if guessed_labels[index] == classLabel:
+            if true_labels[index] == guessed_labels[index]:
+               correctLabelsCount += 1
+            else:
+                wrongLabelsCount += 1
+
+    return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
