@@ -136,6 +136,7 @@ def accuracyOfClassDetection(true_labels, guessed_labels, classLabel):
 
 
 # accuracy of guesses for a certain class, if we guessed a sample's class = classLabel , how correct it is
+#example: I said sth os poitive, x % my guess is correct
 def accuracyOfGuessedClass(true_labels, guessed_labels, classLabel: str):
     correctLabelsCount = 0
     wrongLabelsCount = 0
