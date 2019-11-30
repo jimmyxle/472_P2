@@ -18,7 +18,6 @@ def read_Document(dataFile):
             words=line.strip().split()
             document.append(words[3:])
             labels.append(words[1])
-
     return document,labels
 
 
