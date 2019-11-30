@@ -1,5 +1,5 @@
-doc1 SPAM 241.txt cheap viagra for sale drugs smoke
-doc2 SPAM 241.txt click here for the best viagra
-doc3 SPAM  241.txt book your trip
-doc4 HAM 241.txt cheap book sale
-doc5 HAM 241.txt here is the book for you
+game pos 241.txt The story is interesting and engaging, the gameplay is fun and relaxing, I really enjoyed the experience and was really excited to see each turn the story provided.
+game neg 241.txt Death Stranding is an irredeemable piece of garbage that should serve as a warning to publishers who give developers carte blanche to create ‘art’.
+game pos  241.txt Death Stranding is dizzying, unshakable in its belief it is doing something worthwhile, and it's one of the most important games of this decade.
+game pos 241.txt Hideo Kojima’s latest creation might not be his best ever, although some may argue, but it is definitely his most unique work yet.
+game neg 241.txt Simulador de rappi, muy tedioso de digerir si juegas muchas horas al juego. Se torna muy lento
