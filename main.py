@@ -13,17 +13,17 @@ if __name__ == '__main__':
     evaluation_labels = all_labels[split_point:]
 
 
-    trainedData,lableProbability = NaivBayesClassifier.train_nb(training_documents,training_label)
+    trainedData, label_probability = NaivBayesClassifier.train_nb(training_documents, training_label)
 
     if sys.argv > 1:
         print("testing file ", sys.argv[1])
         test_doc, test_label = NaivBayesClassifier.read_Document(sys.argv[1])
         print('logarithmic Score for `pos` label = ',
-              NaivBayesClassifier.score_doc_label(test_doc, 'pos', trainedData, lableProbability))
+              NaivBayesClassifier.score_doc_label(test_doc, 'pos', trainedData, label_probability))
         print('logarithmic Score for `neg` label = ',
-              NaivBayesClassifier.score_doc_label(test_doc, 'neg', trainedData, lableProbability))
+              NaivBayesClassifier.score_doc_label(test_doc, 'neg', trainedData, label_probability))
 
-        guessedLabels = NaivBayesClassifier.classify_documents(test_doc, trainedData, lableProbability)
+        guessedLabels = NaivBayesClassifier.classify_documents(test_doc, trainedData, label_probability)
 
         print('Accuracy of classifier :', NaivBayesClassifier.accuracy(test_label, guessedLabels))
 
