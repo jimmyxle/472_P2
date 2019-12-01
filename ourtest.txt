@@ -3,3 +3,8 @@ game neg 241.txt Death Stranding is an irredeemable piece of garbage that should
 game pos  241.txt Death Stranding is dizzying, unshakable in its belief it is doing something worthwhile, and it's one of the most important games of this decade.
 game pos 241.txt Hideo Kojima’s latest creation might not be his best ever, although some may argue, but it is definitely his most unique work yet.
 game neg 241.txt Simulador de rappi, muy tedioso de digerir si juegas muchas horas al juego. Se torna muy lento
+game neg 241.txt It is tedious, the story is uninteresting, and in my opinion is not worth $60 dollars. I feel ripped off.
+game neg 241.txt Is a very monotonous game, it has great music and world detail, but no more. The story is compelling but not enough to compensate for the immense boredom.
+game neg 241.txt It's just so boring. I fell asleep while playing. It's a walking simulator and a bad one at that. Only reason it didn't get a 0 is because of the graphics. That's it. Kojima is overrated.
+game neg 241.txt Its great exceptuando the time yo are watling... Wait...so annoying and borde the gameplay its so frustraiting
+game neg 241.txt It's a boring game, sorry it's only it,after a very high expectations, the only thing I can think it's about the great days from first MGS.
