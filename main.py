@@ -1,12 +1,25 @@
 import NaivBayesClassifier
+import random
 import sys
 if __name__ == '__main__':
+
     all_documents, all_labels = NaivBayesClassifier.read_Document("dataFile.txt")
-    split_point = int(0.80 * len(all_documents))
-    training_documents = all_documents[:split_point]
+
+    temp = []
+    for i in range(len(all_documents)):
+        temp.append([all_documents[i],all_labels[i]])
+    random.shuffle(temp)
+    for i in range(len(all_documents)):
+        all_documents[i] = temp[i][0]
+        all_labels[i]=temp[i][1]
+
+    split_point = int(0.80 * len(all_documents))        # partition training set set (80%) vs test set (20%)
+
+    training_documents = all_documents[:split_point]    # training set
     training_label = all_labels[:split_point]
     training_label_unique = list(set(training_label))
-    evaluation_documents = all_documents[split_point:]
+
+    evaluation_documents = all_documents[split_point:]  # test set
     evaluation_labels = all_labels[split_point:]
 
 
