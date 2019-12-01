@@ -38,7 +38,11 @@ if __name__ == '__main__':
     evaluation_labels = all_labels[split_point:]
     trainedData, label_probability = NaivBayesClassifier.train_nb(training_documents, training_label)
 
-    if len(sys.argv) > 2 and sys.argv[1] == "-d":
+    if len(sys.argv) == 2 and sys.argv[1] == "-default":
+        print("Testing default ")
+        guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, label_probability)
+        print("Accuracy = ", NaivBayesClassifier.accuracy(evaluation_labels, guessedLabels))
+    elif len(sys.argv) > 2 and sys.argv[1] == "-d":
         print("Testing file ", sys.argv[2])
         test_doc, test_label = NaivBayesClassifier.read_Document(sys.argv[2])
         guessedLabels = NaivBayesClassifier.classify_documents(test_doc, trainedData, label_probability)
