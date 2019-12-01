@@ -32,9 +32,9 @@ if __name__ == '__main__':
     print('Accuracy of classifier :', NaivBayesClassifier.accuracy(evaluation_labels,guessedLabels))
 
     print('Accuracy of detecting a positive class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels , 'pos'))
-    print( 'Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection( evaluation_labels, guessedLabels, 'pos' ) )
+    print( 'Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection( evaluation_labels, guessedLabels, 'neg' ) )
 
-    print('Accuracy of guessed positive classes:', NaivBayesClassifier.accuracyOfGuessedClass( evaluation_labels, guessedLabels, 'neg' ) )
+    print('Accuracy of guessed positive classes:', NaivBayesClassifier.accuracyOfGuessedClass( evaluation_labels, guessedLabels, 'pos' ) )
     print( 'Accuracy of guessed negative classes:', NaivBayesClassifier.accuracyOfGuessedClass( evaluation_labels, guessedLabels, 'neg' ) )
 
 
