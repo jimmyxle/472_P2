@@ -4,13 +4,8 @@ import NaivBayesClassifier
 import random
 import sys
 
-num_loops = 50
-
-def run():
-if __name__ == '__main__':
-
+def scramble_data_set():
     all_documents, all_labels = NaivBayesClassifier.read_Document("dataFile.txt")
-
     temp = []
     for i in range(len(all_documents)):
         temp.append([all_documents[i], all_labels[i]])
@@ -23,21 +18,24 @@ if __name__ == '__main__':
 
     training_documents = all_documents[:split_point]  # training set
     training_label = all_labels[:split_point]
-    training_label_unique = list(set(training_label))
-
     evaluation_documents = all_documents[split_point:]  # test set
     evaluation_labels = all_labels[split_point:]
-
 
     trainedData, lableProbability = NaivBayesClassifier.train_nb(training_documents, training_label)
     guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, lableProbability)
     acc = NaivBayesClassifier.accuracy(evaluation_labels, guessedLabels)
-    # print(guessedLabels[0:5])
-    print('Accuracy of classifier :', acc)
-    # print('Accuracy of classifier :', NaivBayesClassifier.accuracy(training_label, guessedLabels))
+    #print('Accuracy of classifier :', acc)
     return acc
 
 
+if __name__ == '__main__':
+    all_documents, all_labels = NaivBayesClassifier.read_Document("dataFile.txt")
+    split_point = int(0.80 * len(all_documents))  # partition training set set (80%) vs test set (20%)
+    training_documents = all_documents[:split_point]  # training set
+    training_label = all_labels[:split_point]
+    training_label_unique = list(set(training_label))
+    evaluation_documents = all_documents[split_point:]  # test set
+    evaluation_labels = all_labels[split_point:]
     trainedData, label_probability = NaivBayesClassifier.train_nb(training_documents, training_label)
 
     if len(sys.argv) > 2 and sys.argv[1] == "-d":
@@ -56,20 +54,22 @@ if __name__ == '__main__':
         print('Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'neg'))
         print('Accuracy of guessed positive classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'pos'))
         print('Accuracy of guessed negative classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'neg'))
-            accs = []
-    for i in range(num_loops):
-        accs.append(run())
-    max_acc = max(accs)
-    min_acc = min(accs)
-    mean_acc = statistics.mean(accs)
-    med_acc = statistics.median(accs)
-    print('---------')
-    print('stats: ')
-    print('max: ', max_acc)
-    print('min: ', min_acc)
-    print('mean: ', mean_acc)
-    print('median: ', med_acc)
-    print('---------')
+
+        num_loops = 5
+        accs = []
+        for i in range(num_loops):
+            accs.append(scramble_data_set())
+        max_acc = max(accs)
+        min_acc = min(accs)
+        mean_acc = statistics.mean(accs)
+        med_acc = statistics.median(accs)
+        print('---------')
+        print('stats: ')
+        print('max: ', max_acc)
+        print('min: ', min_acc)
+        print('mean: ', mean_acc)
+        print('median: ', med_acc)
+        print('---------')
 
 
 
