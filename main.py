@@ -11,6 +11,7 @@ if __name__ == '__main__':
     evaluation_labels = all_labels[split_point:]
 
     trainedData, lableProbability = NaivBayesClassifier.train_nb( training_documents, training_label )
+    print(lableProbability)
 
     testDocument="rien a dire si ce n'est que too $hort et ses potes รงa claque c'est tout"
     #print(trainedData)
