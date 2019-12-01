@@ -37,9 +37,9 @@ def train_nb(documents, labels):  # Naive Bayes for training part
     for label in labels:
         labelsCounter[label] += 1
     # calculate the probability of each class (pos,neg)
-    lableProbability = {}
+    labelProbability = {}
     for labelKey in labelsCounter:
-        lableProbability[labelKey] = labelsCounter[labelKey] / len(labels)
+        labelProbability[labelKey] = labelsCounter[labelKey] / len(labels)
 
     # use dictionary (trainedData) to store the probability of each word being observed in  positive or negative review
     trainedData = {}  # for each label, shows the probability of each word
@@ -58,16 +58,16 @@ def train_nb(documents, labels):  # Naive Bayes for training part
         for token in data:
             data[token] = data.get(token) / numberOfAllToken
 
-    return trainedData, lableProbability
+    return trainedData, labelProbability
 
 
-def score_doc_label(document, label, trainedData, lableProbabilty):
+def score_doc_label(document, label, trainedData, labelProbabilty):
     """
     Calculate the score of each label with a given document
     :param document: new document or test document
     :param label: test label
     :param trainedData: the probability of each word
-    :param lableProbabilty: probability of each label
+    :param labelProbabilty: probability of each label
     :return: logScore :logarithmic value of score
     """
     smoothingFactor = 0.5
@@ -76,8 +76,8 @@ def score_doc_label(document, label, trainedData, lableProbabilty):
         words = document.strip().split()
     else:
         words = document
-    score = lableProbabilty[label]
-    logScore = np.log(lableProbabilty[label])
+    score = labelProbabilty[label]
+    logScore = np.log(labelProbabilty[label])
     for word in words:
         if trainedData.get(label).keys().__contains__(word):
             score *= (trainedData.get(label).get(word) + smoothingFactor)  # score of document/word but not used here for reference
@@ -88,12 +88,12 @@ def score_doc_label(document, label, trainedData, lableProbabilty):
 
 # This function claffifies a new document we calculate the score of each category by using the probability of
 # observing each word in document and probability of each label The document begongs to the category with higher score
-def classify_nb(document, trainedData, lableProbabilty):
+def classify_nb(document, trainedData, labelProbabilty):
     scoresDictionary = {}
-    for key in lableProbabilty:
-        scoresDictionary[key] = score_doc_label(document, key, trainedData, lableProbabilty)
+    for key in labelProbabilty:
+        scoresDictionary[key] = score_doc_label(document, key, trainedData, labelProbabilty)
 
-    bestFitLabel = list(lableProbabilty.keys())[0]
+    bestFitLabel = list(labelProbabilty.keys())[0]
     for label in scoresDictionary.keys():
         if scoresDictionary[label] > scoresDictionary[bestFitLabel]:
             bestFitLabel = label
@@ -103,10 +103,10 @@ def classify_nb(document, trainedData, lableProbabilty):
 
 # This fuction classifies each document in the test set (being positive/negative review)
 # and returns the list of predicted sentiment label , (guessed_labels)
-def classify_documents(evaluatingDocs, trainedData, lableProbabilty):
+def classify_documents(evaluatingDocs, trainedData, labelProbabilty):
     guessed_labels = []
     for document in evaluatingDocs:
-        guessed_labels.append(classify_nb(document, trainedData, lableProbabilty))
+        guessed_labels.append(classify_nb(document, trainedData, labelProbabilty))
 
     return guessed_labels  # list of predicted sentiment label
 
@@ -120,5 +120,33 @@ def accuracy(true_labels, guessed_labels):
             correctLabelsCount += 1
         else:
             wrongLabelsCount += 1
+
+    return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
+
+# accuracy of detecting a class, if a class = classLabel, what is the P of guessing correctly
+def accuracyOfClassDetection(true_labels, guessed_labels, classLabel):
+    correctLabelsCount = 0
+    wrongLabelsCount = 0
+    for index, value in enumerate(true_labels):
+        if true_labels[index] == classLabel:
+            if true_labels[index] == guessed_labels[index]:
+               correctLabelsCount += 1
+            else:
+                wrongLabelsCount += 1
+
+    return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
+
+
+# accuracy of guesses for a certain class, if we guessed a sample's class = classLabel , how correct it is
+#example: I said sth os poitive, x % my guess is correct
+def accuracyOfGuessedClass(true_labels, guessed_labels, classLabel: str):
+    correctLabelsCount = 0
+    wrongLabelsCount = 0
+    for index, value in enumerate(true_labels):
+        if guessed_labels[index] == classLabel:
+            if true_labels[index] == guessed_labels[index]:
+               correctLabelsCount += 1
+            else:
+                wrongLabelsCount += 1
 
     return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)

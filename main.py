@@ -1,12 +1,14 @@
 import random
 import statistics
-
 import NaivBayesClassifier
+import random
 import sys
 
 num_loops = 50
 
 def run():
+if __name__ == '__main__':
+
     all_documents, all_labels = NaivBayesClassifier.read_Document("dataFile.txt")
 
     temp = []
@@ -26,22 +28,8 @@ def run():
     evaluation_documents = all_documents[split_point:]  # test set
     evaluation_labels = all_labels[split_point:]
 
-    testDocument = "rien a dire si ce n'est que too $hort et ses potes รงa claque c'est tout"
-    testDocument = "love I amazing great super good"
-    testDocument = "i loved these movies , and i cant wiat for the third one ! very funny , not suitable for chilren "
 
     trainedData, lableProbability = NaivBayesClassifier.train_nb(training_documents, training_label)
-    # print(trainedData)
-    # print(lableProbability)
-
-    # print('logarithmic Score for `pos` label = ',
-    #       NaivBayesClassifier.score_doc_label(document=testDocument,
-    #                                           label='pos',
-    #                                           trainedData=trainedData,
-    #                                           lableProbabilty=lableProbability))
-    # print('logarithmic Score for `neg` label = ',
-    #       NaivBayesClassifier.score_doc_label(testDocument, 'neg', trainedData, lableProbability))
-
     guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, lableProbability)
     acc = NaivBayesClassifier.accuracy(evaluation_labels, guessedLabels)
     # print(guessedLabels[0:5])
@@ -50,9 +38,25 @@ def run():
     return acc
 
 
-if __name__ == '__main__':
+    trainedData, label_probability = NaivBayesClassifier.train_nb(training_documents, training_label)
 
-    accs = []
+    if len(sys.argv) > 2 and sys.argv[1] == "-d":
+        print("Testing file ", sys.argv[2])
+        test_doc, test_label = NaivBayesClassifier.read_Document(sys.argv[2])
+        guessedLabels = NaivBayesClassifier.classify_documents(test_doc, trainedData, label_probability)
+        print("Accuracy = ", NaivBayesClassifier.accuracy(test_label, guessedLabels))
+    elif sys.argv[1] == "-m":
+        print("Testing message = ", sys.argv[2])
+        print("positive log score = ", NaivBayesClassifier.score_doc_label(sys.argv[2], 'pos', trainedData, label_probability))
+        print("negative log score = ", NaivBayesClassifier.score_doc_label(sys.argv[2], 'neg', trainedData, label_probability))
+        print("This document is probably = ", NaivBayesClassifier.classify_nb(sys.argv[2], trainedData, label_probability))
+    elif sys.argv[1] == "-a":
+        guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, label_probability)
+        print('Accuracy of detecting a positive class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'pos'))
+        print('Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'neg'))
+        print('Accuracy of guessed positive classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'pos'))
+        print('Accuracy of guessed negative classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'neg'))
+            accs = []
     for i in range(num_loops):
         accs.append(run())
     max_acc = max(accs)
@@ -66,3 +70,6 @@ if __name__ == '__main__':
     print('mean: ', mean_acc)
     print('median: ', med_acc)
     print('---------')
+
+
+
