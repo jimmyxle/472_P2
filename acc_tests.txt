@@ -1,0 +1,57 @@
+Accuracy of classifier : 0.4448174569869912
+Accuracy of classifier : 0.46328157784305496
+Accuracy of classifier : 0.44859420898027697
+Accuracy of classifier : 0.46076374318086444
+Accuracy of classifier : 0.443978178766261
+Accuracy of classifier : 0.4385228703315149
+Accuracy of classifier : 0.4540495174150231
+Accuracy of classifier : 0.44271926143516577
+Accuracy of classifier : 0.46412085606378517
+Accuracy of classifier : 0.4464960134284515
+Accuracy of classifier : 0.4599244649601343
+Accuracy of classifier : 0.43684431389005457
+Accuracy of classifier : 0.4565673520772136
+Accuracy of classifier : 0.4523709609735627
+Accuracy of classifier : 0.4473352916491817
+Accuracy of classifier : 0.4318086445656735
+Accuracy of classifier : 0.43432647922786405
+Accuracy of classifier : 0.43894250944187996
+Accuracy of classifier : 0.43894250944187996
+Accuracy of classifier : 0.45195132186319764
+Accuracy of classifier : 0.4687368862778011
+Accuracy of classifier : 0.44859420898027697
+Accuracy of classifier : 0.4611833822912295
+Accuracy of classifier : 0.42299622324800673
+Accuracy of classifier : 0.429290809903483
+Accuracy of classifier : 0.44901384809064204
+Accuracy of classifier : 0.42761225346202264
+Accuracy of classifier : 0.44271926143516577
+Accuracy of classifier : 0.44271926143516577
+Accuracy of classifier : 0.41879983214435584
+Accuracy of classifier : 0.45488879563575324
+Accuracy of classifier : 0.4523709609735627
+Accuracy of classifier : 0.4527906000839278
+Accuracy of classifier : 0.4347461183382291
+Accuracy of classifier : 0.44607637431808644
+Accuracy of classifier : 0.4435585396558959
+Accuracy of classifier : 0.4540495174150231
+Accuracy of classifier : 0.45740663029794376
+Accuracy of classifier : 0.43600503566932436
+Accuracy of classifier : 0.43013008812421316
+Accuracy of classifier : 0.43306756189676876
+Accuracy of classifier : 0.4527906000839278
+Accuracy of classifier : 0.4351657574485942
+Accuracy of classifier : 0.43684431389005457
+Accuracy of classifier : 0.42005874947545113
+Accuracy of classifier : 0.4443978178766261
+Accuracy of classifier : 0.43348720100713384
+Accuracy of classifier : 0.41838019303399077
+Accuracy of classifier : 0.4469156525388166
+Accuracy of classifier : 0.4498531263113722
+---------
+stats:
+max:  0.4687368862778011
+min:  0.41838019303399077
+mean:  0.4440201426772975
+median:  0.44460763743180864
+---------

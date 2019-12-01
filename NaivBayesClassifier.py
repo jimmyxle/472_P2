@@ -36,7 +36,6 @@ def train_nb(documents, labels):  # Naive Bayes for training part
     labelsCounter = Counter()
     for label in labels:
         labelsCounter[label] += 1
-
     # calculate the probability of each class (pos,neg)
     lableProbability = {}
     for labelKey in labelsCounter:
@@ -81,8 +80,7 @@ def score_doc_label(document, label, trainedData, lableProbabilty):
     logScore = np.log(lableProbabilty[label])
     for word in words:
         if trainedData.get(label).keys().__contains__(word):
-            score *= (trainedData.get(label).get(
-                word) + smoothingFactor)  # score of document/word but not used here for reference
+            score *= (trainedData.get(label).get(word) + smoothingFactor)  # score of document/word but not used here for reference
             logScore += np.log(trainedData.get(label).get(word) + smoothingFactor)  # logarithm returns a negative value
 
     return logScore
