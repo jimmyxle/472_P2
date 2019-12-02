@@ -37,7 +37,6 @@ if __name__ == '__main__':
     evaluation_documents = all_documents[split_point:]  # test set
     evaluation_labels = all_labels[split_point:]
     trainedData, label_probability = NaivBayesClassifier.train_nb(training_documents, training_label)
-
     if len(sys.argv) == 2 and sys.argv[1] == "-default":
         print("Testing default ")
         guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, label_probability)
@@ -56,8 +55,16 @@ if __name__ == '__main__':
         guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, label_probability)
         print('Accuracy of detecting a positive class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'pos'))
         print('Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'neg'))
-        print('Accuracy of guessed positive classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'pos'))
-        print('Accuracy of guessed negative classes:', NaivBayesClassifier.accuracyOfGuessedClass(evaluation_labels, guessedLabels, 'neg'))
+
+        prec_pos, rec_pos = NaivBayesClassifier.prec_rec(evaluation_labels, guessedLabels, 'pos')
+        prec_neg, rec_neg = NaivBayesClassifier.prec_rec(evaluation_labels, guessedLabels, 'neg')
+
+        print('----')
+        print('Precision [positive]: ', prec_pos, ' - [negative]: ', prec_neg)
+        print('Recall [positive]: ', rec_pos, ' - [negative]: ', rec_neg)
+        print('Precision total: ', prec_pos + prec_neg)
+        print('Recall total: ', rec_pos + rec_neg)
+        print('----')
 
         num_loops = 5
         accs = []

@@ -150,3 +150,27 @@ def accuracyOfGuessedClass(true_labels, guessed_labels, classLabel: str):
                 wrongLabelsCount += 1
 
     return correctLabelsCount / (correctLabelsCount + wrongLabelsCount)
+
+
+def prec_rec(true_labels, guessed_labels, classLabel):
+    """
+
+    :param true_labels:
+    :param guessed_labels:
+    :param classLabel:
+    :return: precision, recall
+    """
+    true_pos = 0
+    false_pos = 0
+    false_neg = 0
+    for index in range(len(true_labels)):
+        if guessed_labels[index] == classLabel: # claim is same as wanted
+            if true_labels[index] == guessed_labels[index]:     # claim is actually correct
+               true_pos += 1
+            else:
+                false_pos += 1
+        else:                                   #claim is NOT same as wanted
+            if true_labels[index] == guessed_labels[index]:     # claim is actually correct
+               false_neg += 1
+
+    return (true_pos / (true_pos + false_pos)),(true_pos / (true_pos + false_neg))
