@@ -15,5 +15,3 @@ _python3 main.py -d "ourtest.txt"_
 _python3 main.py -m "This review is positive"_
 
 _python3 main.py -a ""_
-
- 
