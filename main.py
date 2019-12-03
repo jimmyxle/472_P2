@@ -52,6 +52,8 @@ if __name__ == '__main__':
         print("negative log score = ", NaivBayesClassifier.score_doc_label(sys.argv[2], 'neg', trainedData, label_probability))
         print("This document is probably = ", NaivBayesClassifier.classify_nb(sys.argv[2], trainedData, label_probability))
     elif len(sys.argv) == 2 and sys.argv[1] == "-a":
+        print("Testing validation data ")
+
         guessedLabels = NaivBayesClassifier.classify_documents(evaluation_documents, trainedData, label_probability)
         print('Accuracy of detecting a positive class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'pos'))
         print('Accuracy of detecting a negative class:', NaivBayesClassifier.accuracyOfClassDetection(evaluation_labels, guessedLabels, 'neg'))
