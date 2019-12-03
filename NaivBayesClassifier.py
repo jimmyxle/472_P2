@@ -161,6 +161,7 @@ def prec_rec(true_labels, guessed_labels, classLabel):
     :return: precision, recall
     """
     true_pos = 0
+    true_neg = 0
     false_pos = 0
     false_neg = 0
     for index in range(len(true_labels)):
@@ -172,5 +173,7 @@ def prec_rec(true_labels, guessed_labels, classLabel):
         else:                                   #claim is NOT same as wanted
             if true_labels[index] == guessed_labels[index]:     # claim is actually correct
                false_neg += 1
+            else:
+                true_neg += 1
 
-    return (true_pos / (true_pos + false_pos)),(true_pos / (true_pos + false_neg))
+    return (true_pos / (true_pos + false_pos)), (true_pos / (true_pos + false_neg)), true_pos, false_pos, false_neg, true_neg
